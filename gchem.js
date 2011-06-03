@@ -26,6 +26,12 @@ function getImageURL(id) {
   return 'http://cactus.nci.nih.gov/chemical/structure/' + id + '/image?width=150&height=150&format=png';
 };
 
+function getChemSpiderID(id) {
+  var content = lookup(id, 'chemspider_id');
+  
+  return content ? content : 'NOT FOUND';
+};
+
 function getCAS(id) {
  var content = lookup(id, 'cas');
 

@@ -1,0 +1,13 @@
+gChem is a small set of custom formulas that makes it easy to work with chemical information using Google Spreadsheets. The above video explains the installation process. Complete source code is available from GitHub. Formulas include:
+
+- getImageURL
+- getSMILES
+- getInChIKey
+- getInChI
+- getSynonyms
+- getChemSpiderID
+- getCAS
+
+For complete instructions on installation, visit:
+
+http://metamolecular.com/gchem/

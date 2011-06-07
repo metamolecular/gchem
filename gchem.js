@@ -44,6 +44,12 @@ function getSMILES(id) {
   return content ? content : 'NOT FOUND';
 };
 
+function getSDF(id) {
+  var content = lookup(id, 'sdf');
+  
+  return content ? content : 'NOT FOUND';
+}
+
 function getInChIKey(id) {
   var content = lookup(id, 'stdinchikey');
   

@@ -1,6 +1,6 @@
 /**
  * gChem: Chemistry Tools for Google(tm) Spreadsheets
- * Copyright (c) 2011 Metamolecular, LLC and Andrew S.I.D. Lang (asidlang@gmail.com)
+ * Copyright (c) 2011 Metamolecular, LLC and Andrew S.I.D. Lang
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -21,7 +21,12 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
+ 
+/**
+ * @author Richard L Apodaca - rapodaca@metamolecular.com
+ * @author Andrew S.I.D. Lang - asidlang@gmail.com
+ */
+ 
 function getImageURL(id) {
   return 'http://cactus.nci.nih.gov/chemical/structure/' + id + '/image?width=150&height=150&format=png';
 };

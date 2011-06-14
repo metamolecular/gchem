@@ -50,99 +50,99 @@ function onOpen() {
 }
 
 function InsertgetImage() {
- var sheet = SpreadsheetApp.getActiveSheet();
- var ac = sheet.getActiveCell();
- var r = ac.getRow();
- var c = ac.getColumn();
- sheet.getRange(r, c).setFormula('=image(getImageURL(' + sheet.getRange(r, 1).getA1Notation() + '))');
+  var sheet = SpreadsheetApp.getActiveSheet();
+  var ac = sheet.getActiveCell();
+  var r = ac.getRow();
+  var c = ac.getColumn();
+  sheet.getRange(r, c).setFormula('=image(getImageURL(' + sheet.getRange(r, 1).getA1Notation() + '))');
 }
 
 function InsertgetCSImage() {
- var sheet = SpreadsheetApp.getActiveSheet();
- var ac = sheet.getActiveCell();
- var r = ac.getRow();
- var c = ac.getColumn();
- sheet.getRange(r, c).setFormula('=image(getCSImageURL(' + sheet.getRange(r, 1).getA1Notation() + '))');
+  var sheet = SpreadsheetApp.getActiveSheet();
+  var ac = sheet.getActiveCell();
+  var r = ac.getRow();
+  var c = ac.getColumn();
+  sheet.getRange(r, c).setFormula('=image(getCSImageURL(' + sheet.getRange(r, 1).getA1Notation() + '))');
 }
 
 function InsertgetChemSpiderID() {
- var sheet = SpreadsheetApp.getActiveSheet();
- var ac = sheet.getActiveCell();
- var r = ac.getRow();
- var c = ac.getColumn();
- sheet.getRange(r, c).setFormula('=getChemSpiderID(' + sheet.getRange(r, 1).getA1Notation() + ')');
+  var sheet = SpreadsheetApp.getActiveSheet();
+  var ac = sheet.getActiveCell();
+  var r = ac.getRow();
+  var c = ac.getColumn();
+  sheet.getRange(r, c).setFormula('=getChemSpiderID(' + sheet.getRange(r, 1).getA1Notation() + ')');
 }
 
 function InsertgetCSID() {
- var sheet = SpreadsheetApp.getActiveSheet();
- var ac = sheet.getActiveCell();
- var r = ac.getRow();
- var c = ac.getColumn();
- sheet.getRange(r, c).setFormula('=getCSID(' + sheet.getRange(r, 1).getA1Notation() + ')');
+  var sheet = SpreadsheetApp.getActiveSheet();
+  var ac = sheet.getActiveCell();
+  var r = ac.getRow();
+  var c = ac.getColumn();
+  sheet.getRange(r, c).setFormula('=getCSID(' + sheet.getRange(r, 1).getA1Notation() + ')');
 }
 
 function InsertgetCAS() {
- var sheet = SpreadsheetApp.getActiveSheet();
- var ac = sheet.getActiveCell();
- var r = ac.getRow();
- var c = ac.getColumn();
- sheet.getRange(r, c).setFormula('=getCAS(' + sheet.getRange(r, 1).getA1Notation() + ')');
+  var sheet = SpreadsheetApp.getActiveSheet();
+  var ac = sheet.getActiveCell();
+  var r = ac.getRow();
+  var c = ac.getColumn();
+  sheet.getRange(r, c).setFormula('=getCAS(' + sheet.getRange(r, 1).getA1Notation() + ')');
 }
 
 function InsertgetSMILES() {
- var sheet = SpreadsheetApp.getActiveSheet();
- var ac = sheet.getActiveCell();
- var r = ac.getRow();
- var c = ac.getColumn();
- sheet.getRange(r, c).setFormula('=getSMILES(' + sheet.getRange(r, 1).getA1Notation() + ')');
+  var sheet = SpreadsheetApp.getActiveSheet();
+  var ac = sheet.getActiveCell();
+  var r = ac.getRow();
+  var c = ac.getColumn();
+  sheet.getRange(r, c).setFormula('=getSMILES(' + sheet.getRange(r, 1).getA1Notation() + ')');
 }
 
 function InsertgetSDF() {
- var sheet = SpreadsheetApp.getActiveSheet();
- var ac = sheet.getActiveCell();
- var r = ac.getRow();
- var c = ac.getColumn();
- sheet.getRange(r, c).setFormula('=getSDF(' + sheet.getRange(r, 1).getA1Notation() + ')');
+  var sheet = SpreadsheetApp.getActiveSheet();
+  var ac = sheet.getActiveCell();
+  var r = ac.getRow();
+  var c = ac.getColumn();
+  sheet.getRange(r, c).setFormula('=getSDF(' + sheet.getRange(r, 1).getA1Notation() + ')');
 }
 
 function InsertgetInChIKey() {
- var sheet = SpreadsheetApp.getActiveSheet();
- var ac = sheet.getActiveCell();
- var r = ac.getRow();
- var c = ac.getColumn();
- sheet.getRange(r, c).setFormula('=getInChIKey(' + sheet.getRange(r, 1).getA1Notation() + ')');
+  var sheet = SpreadsheetApp.getActiveSheet();
+  var ac = sheet.getActiveCell();
+  var r = ac.getRow();
+  var c = ac.getColumn();
+  sheet.getRange(r, c).setFormula('=getInChIKey(' + sheet.getRange(r, 1).getA1Notation() + ')');
 }
 
 function InsertgetInChI() {
- var sheet = SpreadsheetApp.getActiveSheet();
- var ac = sheet.getActiveCell();
- var r = ac.getRow();
- var c = ac.getColumn();
- sheet.getRange(r, c).setFormula('=getInChI(' + sheet.getRange(r, 1).getA1Notation() + ')');
+  var sheet = SpreadsheetApp.getActiveSheet();
+  var ac = sheet.getActiveCell();
+  var r = ac.getRow();
+  var c = ac.getColumn();
+  sheet.getRange(r, c).setFormula('=getInChI(' + sheet.getRange(r, 1).getA1Notation() + ')');
 }
 
 function InsertgetSynonyms() {
- var sheet = SpreadsheetApp.getActiveSheet();
- var ac = sheet.getActiveCell();
- var r = ac.getRow();
- var c = ac.getColumn();
- sheet.getRange(r, c).setFormula('=getSynonyms(' + sheet.getRange(r, 1).getA1Notation() + ')');
+  var sheet = SpreadsheetApp.getActiveSheet();
+  var ac = sheet.getActiveCell();
+  var r = ac.getRow();
+  var c = ac.getColumn();
+  sheet.getRange(r, c).setFormula('=getSynonyms(' + sheet.getRange(r, 1).getA1Notation() + ')');
 }
 
 function Insertgetmp() {
- var sheet = SpreadsheetApp.getActiveSheet();
- var ac = sheet.getActiveCell();
- var r = ac.getRow();
- var c = ac.getColumn();
- sheet.getRange(r, c).setFormula('=getmp(' + sheet.getRange(r, 1).getA1Notation() + ')');
+  var sheet = SpreadsheetApp.getActiveSheet();
+  var ac = sheet.getActiveCell();
+  var r = ac.getRow();
+  var c = ac.getColumn();
+  sheet.getRange(r, c).setFormula('=getmp(' + sheet.getRange(r, 1).getA1Notation() + ')');
 }
 
 function Insertgetmc() {
- var sheet = SpreadsheetApp.getActiveSheet();
- var ac = sheet.getActiveCell();
- var r = ac.getRow();
- var c = ac.getColumn();
- sheet.getRange(r, c).setFormula('=getmc(' + sheet.getRange(r, 1).getA1Notation() + ',' + sheet.getRange(r, 2).getA1Notation() + ')');
+  var sheet = SpreadsheetApp.getActiveSheet();
+  var ac = sheet.getActiveCell();
+  var r = ac.getRow();
+  var c = ac.getColumn();
+  sheet.getRange(r, c).setFormula('=getmc(' + sheet.getRange(r, 1).getA1Notation() + ',' + sheet.getRange(r, 2).getA1Notation() + ')');
 }
 
 /**

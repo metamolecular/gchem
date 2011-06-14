@@ -26,7 +26,129 @@
  * @author Richard L Apodaca - rapodaca@metamolecular.com
  * @author Andrew S.I.D. Lang - asidlang@gmail.com
  */
- 
+
+/**
+ * Menu For All Functions - Requires identifier to be in the first column and the same row as selected cell
+ * getmc requires the solute to be in the first column and the solvent to be in the second column and the same row as selected cell
+ */
+
+function onOpen() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var menuEntries = [ {name: "getImage", functionName: "InsertgetImage"},
+                      {name: "getCSImage", functionName: "InsertgetCSImage"},
+                      {name: "getChemSpiderID", functionName: "InsertgetChemSpiderID"},
+                      {name: "getCSID", functionName: "InsertgetCSID"},
+                      {name: "getCAS", functionName: "InsertgetCAS"},
+                      {name: "getSMILES", functionName: "InsertgetSMILES"},
+                      {name: "getSDF", functionName: "InsertgetSDF"},
+                      {name: "getInChIKey", functionName: "InsertgetInChIKey"},
+                      {name: "getInChI", functionName: "InsertgetInChI"},
+                      {name: "getSynonyms", functionName: "InsertgetSynonyms"},
+                      {name: "getmp", functionName: "Insertgetmp"},
+                      {name: "getmc", functionName: "Insertgetmc"}];
+  ss.addMenu("gChem", menuEntries);
+}
+
+function InsertgetImage() {
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=image(getImageURL(' + sheet.getRange(r, 1).getA1Notation() + '))');
+}
+
+function InsertgetCSImage() {
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=image(getCSImageURL(' + sheet.getRange(r, 1).getA1Notation() + '))');
+}
+
+function InsertgetChemSpiderID() {
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getChemSpiderID(' + sheet.getRange(r, 1).getA1Notation() + ')');
+}
+
+function InsertgetCSID() {
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getCSID(' + sheet.getRange(r, 1).getA1Notation() + ')');
+}
+
+function InsertgetCAS() {
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getCAS(' + sheet.getRange(r, 1).getA1Notation() + ')');
+}
+
+function InsertgetSMILES() {
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getSMILES(' + sheet.getRange(r, 1).getA1Notation() + ')');
+}
+
+function InsertgetSDF() {
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getSDF(' + sheet.getRange(r, 1).getA1Notation() + ')');
+}
+
+function InsertgetInChIKey() {
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getInChIKey(' + sheet.getRange(r, 1).getA1Notation() + ')');
+}
+
+function InsertgetInChI() {
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getInChI(' + sheet.getRange(r, 1).getA1Notation() + ')');
+}
+
+function InsertgetSynonyms() {
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getSynonyms(' + sheet.getRange(r, 1).getA1Notation() + ')');
+}
+
+function Insertgetmp() {
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getmp(' + sheet.getRange(r, 1).getA1Notation() + ')');
+}
+
+function Insertgetmc() {
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getmc(' + sheet.getRange(r, 1).getA1Notation() + ',' + sheet.getRange(r, 2).getA1Notation() + ')');
+}
+
+/**
+ * All Functions
+ */
+
 function getImageURL(id) {
   return 'http://cactus.nci.nih.gov/chemical/structure/' + id + '/image?width=150&height=150&format=png';
 };

@@ -35,114 +35,234 @@
 function onOpen() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var menuEntries = [ {name: "getImage", functionName: "InsertgetImage"},
-                      {name: "getCSImage", functionName: "InsertgetCSImage"},
                       {name: "getChemSpiderID", functionName: "InsertgetChemSpiderID"},
-                      {name: "getCSID", functionName: "InsertgetCSID"},
                       {name: "getCAS", functionName: "InsertgetCAS"},
                       {name: "getSMILES", functionName: "InsertgetSMILES"},
                       {name: "getSDF", functionName: "InsertgetSDF"},
                       {name: "getInChIKey", functionName: "InsertgetInChIKey"},
                       {name: "getInChI", functionName: "InsertgetInChI"},
-                      {name: "getSynonyms", functionName: "InsertgetSynonyms"},
-                      {name: "getmp", functionName: "Insertgetmp"},
-                      {name: "getmc", functionName: "Insertgetmc"}];
+                      {name: "getSynonyms", functionName: "InsertgetSynonyms"}];
   ss.addMenu("gChem", menuEntries);
+  
+  var cdkmenu = [ {name: "getALogP", functionName: "InsertgetALogP"},
+                  {name: "getAMR", functionName: "InsertgetAMR"},
+                  {name: "getbpol", functionName: "Insertgetbpol"},
+                  {name: "getnHBAcc", functionName: "InsertgetnHBAcc"},
+                  {name: "getnHBDon", functionName: "InsertgetnHBDon"},
+                  {name: "getnAtomP", functionName: "InsertgetnAtomP"},
+                  {name: "getnRotB", functionName: "InsertgetnRotB"},
+                  {name: "getLipinskiFailures", functionName: "InsertgetLipinskiFailures"},
+                  {name: "getTopoPSA", functionName: "InsertgetTopoPSA"},
+                  {name: "getMW", functionName: "InsertgetMW"},
+                  {name: "getXLogP", functionName: "InsertgetXLogP"}];
+  ss.addMenu("gCDK", cdkmenu);
+  
+  var cdkmenu = [ {name: "getCSID", functionName: "InsertgetCSID"},
+                  {name: "getCSImage", functionName: "InsertgetCSImage"},
+                  {name: "getCSPredictedDensity", functionName: "InsertgetCSPredictedDensity"},
+                  {name: "getMP", functionName: "Insertgetmp"},
+                  {name: "getMC", functionName: "Insertgetmc"}];
+  ss.addMenu("gONS", cdkmenu);
 }
 
 function InsertgetImage() {
-  var sheet = SpreadsheetApp.getActiveSheet();
-  var ac = sheet.getActiveCell();
-  var r = ac.getRow();
-  var c = ac.getColumn();
-  sheet.getRange(r, c).setFormula('=image(getImageURL(' + sheet.getRange(r, 1).getA1Notation() + '))');
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=image(getImageURL(' + sheet.getRange(r, 1).getA1Notation() + '))');
 }
 
 function InsertgetCSImage() {
-  var sheet = SpreadsheetApp.getActiveSheet();
-  var ac = sheet.getActiveCell();
-  var r = ac.getRow();
-  var c = ac.getColumn();
-  sheet.getRange(r, c).setFormula('=image(getCSImageURL(' + sheet.getRange(r, 1).getA1Notation() + '))');
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=image(getCSImageURL(' + sheet.getRange(r, 1).getA1Notation() + '))');
 }
 
 function InsertgetChemSpiderID() {
-  var sheet = SpreadsheetApp.getActiveSheet();
-  var ac = sheet.getActiveCell();
-  var r = ac.getRow();
-  var c = ac.getColumn();
-  sheet.getRange(r, c).setFormula('=getChemSpiderID(' + sheet.getRange(r, 1).getA1Notation() + ')');
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getChemSpiderID(' + sheet.getRange(r, 1).getA1Notation() + ')');
 }
 
 function InsertgetCSID() {
-  var sheet = SpreadsheetApp.getActiveSheet();
-  var ac = sheet.getActiveCell();
-  var r = ac.getRow();
-  var c = ac.getColumn();
-  sheet.getRange(r, c).setFormula('=getCSID(' + sheet.getRange(r, 1).getA1Notation() + ')');
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getCSID(' + sheet.getRange(r, 1).getA1Notation() + ')');
 }
 
 function InsertgetCAS() {
-  var sheet = SpreadsheetApp.getActiveSheet();
-  var ac = sheet.getActiveCell();
-  var r = ac.getRow();
-  var c = ac.getColumn();
-  sheet.getRange(r, c).setFormula('=getCAS(' + sheet.getRange(r, 1).getA1Notation() + ')');
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getCAS(' + sheet.getRange(r, 1).getA1Notation() + ')');
 }
 
 function InsertgetSMILES() {
-  var sheet = SpreadsheetApp.getActiveSheet();
-  var ac = sheet.getActiveCell();
-  var r = ac.getRow();
-  var c = ac.getColumn();
-  sheet.getRange(r, c).setFormula('=getSMILES(' + sheet.getRange(r, 1).getA1Notation() + ')');
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getSMILES(' + sheet.getRange(r, 1).getA1Notation() + ')');
 }
 
 function InsertgetSDF() {
-  var sheet = SpreadsheetApp.getActiveSheet();
-  var ac = sheet.getActiveCell();
-  var r = ac.getRow();
-  var c = ac.getColumn();
-  sheet.getRange(r, c).setFormula('=getSDF(' + sheet.getRange(r, 1).getA1Notation() + ')');
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getSDF(' + sheet.getRange(r, 1).getA1Notation() + ')');
 }
 
 function InsertgetInChIKey() {
-  var sheet = SpreadsheetApp.getActiveSheet();
-  var ac = sheet.getActiveCell();
-  var r = ac.getRow();
-  var c = ac.getColumn();
-  sheet.getRange(r, c).setFormula('=getInChIKey(' + sheet.getRange(r, 1).getA1Notation() + ')');
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getInChIKey(' + sheet.getRange(r, 1).getA1Notation() + ')');
 }
 
 function InsertgetInChI() {
-  var sheet = SpreadsheetApp.getActiveSheet();
-  var ac = sheet.getActiveCell();
-  var r = ac.getRow();
-  var c = ac.getColumn();
-  sheet.getRange(r, c).setFormula('=getInChI(' + sheet.getRange(r, 1).getA1Notation() + ')');
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getInChI(' + sheet.getRange(r, 1).getA1Notation() + ')');
 }
 
 function InsertgetSynonyms() {
-  var sheet = SpreadsheetApp.getActiveSheet();
-  var ac = sheet.getActiveCell();
-  var r = ac.getRow();
-  var c = ac.getColumn();
-  sheet.getRange(r, c).setFormula('=getSynonyms(' + sheet.getRange(r, 1).getA1Notation() + ')');
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getSynonyms(' + sheet.getRange(r, 1).getA1Notation() + ')');
 }
 
 function Insertgetmp() {
-  var sheet = SpreadsheetApp.getActiveSheet();
-  var ac = sheet.getActiveCell();
-  var r = ac.getRow();
-  var c = ac.getColumn();
-  sheet.getRange(r, c).setFormula('=getmp(' + sheet.getRange(r, 1).getA1Notation() + ')');
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getmp(' + sheet.getRange(r, 1).getA1Notation() + ')');
 }
 
 function Insertgetmc() {
-  var sheet = SpreadsheetApp.getActiveSheet();
-  var ac = sheet.getActiveCell();
-  var r = ac.getRow();
-  var c = ac.getColumn();
-  sheet.getRange(r, c).setFormula('=getmc(' + sheet.getRange(r, 1).getA1Notation() + ',' + sheet.getRange(r, 2).getA1Notation() + ')');
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getmc(' + sheet.getRange(r, 1).getA1Notation() + ',' + sheet.getRange(r, 2).getA1Notation() + ')');
+}
+
+/**
+ * CDK menu functions 
+ */
+
+function InsertgetALogP() {
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getALogP(' + sheet.getRange(r, 1).getA1Notation() + ')');
+}
+
+function InsertgetAMR() {
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getAMR(' + sheet.getRange(r, 1).getA1Notation() + ')');
+}
+
+function Insertgetbpol() {
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getbpol(' + sheet.getRange(r, 1).getA1Notation() + ')');
+}
+
+function InsertgetnHBAcc() {
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getnHBAcc(' + sheet.getRange(r, 1).getA1Notation() + ')');
+}
+
+function InsertgetnHBDon() {
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getnHBDon(' + sheet.getRange(r, 1).getA1Notation() + ')');
+}
+
+function InsertgetnAtomP() {
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getnAtomP(' + sheet.getRange(r, 1).getA1Notation() + ')');
+}
+
+function InsertgetnRotB() {
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getnRotB(' + sheet.getRange(r, 1).getA1Notation() + ')');
+}
+
+function InsertgetLipinskiFailures() {
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getLipinskiFailures(' + sheet.getRange(r, 1).getA1Notation() + ')');
+}
+
+function InsertgetTopoPSA() {
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getTopoPSA(' + sheet.getRange(r, 1).getA1Notation() + ')');
+}
+
+function InsertgetMW() {
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getMW(' + sheet.getRange(r, 1).getA1Notation() + ')');
+}
+
+function InsertgetXLogP() {
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getXLogP(' + sheet.getRange(r, 1).getA1Notation() + ')');
+}
+
+/**
+ * ONS menu functions 
+ */
+
+function InsertgetCSPredictedDensity() {
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getCSPredictedDensity(' + sheet.getRange(r, 1).getA1Notation() + ')');
 }
 
 /**
@@ -199,7 +319,7 @@ function getCSID(id) { // returns first ChemSpider ID
   return csids[0];
 };
 
-function getmp(id) { // get experimental melting point
+function getMP(id) { // get experimental melting point
   var content = lookup(id, 'chemspider_id');
   
   if (!content) {
@@ -222,7 +342,7 @@ function getmp(id) { // get experimental melting point
   return result;
 };
 
-function getmc(solute,solvent) { // get experimental molar concentration
+function getMC(solute,solvent) { // get experimental molar concentration
   var solutecsid = lookup(solute, 'chemspider_id');
   
   if (!solutecsid) {
@@ -296,3 +416,223 @@ function lookup(id, representation) {
   
   return result;
 };
+
+/**
+ * CDK Functions
+ */
+
+function getALogP(id) {
+  var content = lookup(id, 'smiles');
+  
+  if (!content) {
+    return 'NOT FOUND';
+  }
+  var url = 'http://ws1.bmc.uu.se:8182/cdk/descriptor/org.openscience.cdk.qsar.descriptors.molecular.ALOGPDescriptor/' + encodeURIComponent(content);
+  var result;
+  try {
+    var response = UrlFetchApp.fetch(url);
+    result = response.getContentText();
+  } catch (error) {
+    // do nothing
+  }
+  result = result.substr(result.indexOf("ALogP"));
+  return result.substr(result.indexOf("value=")+7,result.indexOf("/>")-result.indexOf("value=")-9);
+}
+
+function getAMR(id) {
+  var content = lookup(id, 'smiles');
+  
+  if (!content) {
+    return 'NOT FOUND';
+  }
+  var url = 'http://ws1.bmc.uu.se:8182/cdk/descriptor/org.openscience.cdk.qsar.descriptors.molecular.ALOGPDescriptor/' + encodeURIComponent(content);
+  var result;
+  try {
+    var response = UrlFetchApp.fetch(url);
+    result = response.getContentText();
+  } catch (error) {
+    // do nothing
+  }
+  result = result.substr(result.indexOf("AMR"));
+  return result.substr(result.indexOf("value=")+7,result.indexOf("/>")-result.indexOf("value=")-9);
+}
+
+function getbpol(id) {
+  var content = lookup(id, 'smiles');
+  
+  if (!content) {
+    return 'NOT FOUND';
+  }
+  var url = 'http://ws1.bmc.uu.se:8182/cdk/descriptor/org.openscience.cdk.qsar.descriptors.molecular.BPolDescriptor/' + encodeURIComponent(content);
+  var result;
+  try {
+    var response = UrlFetchApp.fetch(url);
+    result = response.getContentText();
+  } catch (error) {
+    // do nothing
+  }
+  return result.substr(result.indexOf("value=")+7,result.indexOf("/>")-result.indexOf("value=")-9);
+}
+
+function getnHBAcc(id) {
+  var content = lookup(id, 'smiles');
+  
+  if (!content) {
+    return 'NOT FOUND';
+  }
+  var url = 'http://ws1.bmc.uu.se:8182/cdk/descriptor/org.openscience.cdk.qsar.descriptors.molecular.HBondAcceptorCountDescriptor/' + encodeURIComponent(content);
+  var result;
+  try {
+    var response = UrlFetchApp.fetch(url);
+    result = response.getContentText();
+  } catch (error) {
+    // do nothing
+  }
+  return result.substr(result.indexOf("value=")+7,result.indexOf("/>")-result.indexOf("value=")-9);
+}
+
+function getnHBDon(id) {
+  var content = lookup(id, 'smiles');
+  
+  if (!content) {
+    return 'NOT FOUND';
+  }
+  var url = 'http://ws1.bmc.uu.se:8182/cdk/descriptor/org.openscience.cdk.qsar.descriptors.molecular.HBondDonorCountDescriptor/' + encodeURIComponent(content);
+  var result;
+  try {
+    var response = UrlFetchApp.fetch(url);
+    result = response.getContentText();
+  } catch (error) {
+    // do nothing
+  }
+  return result.substr(result.indexOf("value=")+7,result.indexOf("/>")-result.indexOf("value=")-9);
+}
+
+function getnAtomP(id) {
+  var content = lookup(id, 'smiles');
+  
+  if (!content) {
+    return 'NOT FOUND';
+  }
+  var url = 'http://ws1.bmc.uu.se:8182/cdk/descriptor/org.openscience.cdk.qsar.descriptors.molecular.LargestPiSystemDescriptor/' + encodeURIComponent(content);
+  var result;
+  try {
+    var response = UrlFetchApp.fetch(url);
+    result = response.getContentText();
+  } catch (error) {
+    // do nothing
+  }
+  return result.substr(result.indexOf("value=")+7,result.indexOf("/>")-result.indexOf("value=")-9);
+}
+
+function getnRotB(id) {
+  var content = lookup(id, 'smiles');
+  
+  if (!content) {
+    return 'NOT FOUND';
+  }
+  var url = 'http://ws1.bmc.uu.se:8182/cdk/descriptor/org.openscience.cdk.qsar.descriptors.molecular.RotatableBondsCountDescriptor/' + encodeURIComponent(content);
+  var result;
+  try {
+    var response = UrlFetchApp.fetch(url);
+    result = response.getContentText();
+  } catch (error) {
+    // do nothing
+  }
+  return result.substr(result.indexOf("value=")+7,result.indexOf("/>")-result.indexOf("value=")-9);
+}
+
+function getLipinskiFailures(id) {
+  var content = lookup(id, 'smiles');
+  
+  if (!content) {
+    return 'NOT FOUND';
+  }
+  var url = 'http://ws1.bmc.uu.se:8182/cdk/descriptor/org.openscience.cdk.qsar.descriptors.molecular.RuleOfFiveDescriptor/' + encodeURIComponent(content);
+  var result;
+  try {
+    var response = UrlFetchApp.fetch(url);
+    result = response.getContentText();
+  } catch (error) {
+    // do nothing
+  }
+  return result.substr(result.indexOf("value=")+7,result.indexOf("/>")-result.indexOf("value=")-9);
+}
+
+function getTopoPSA(id) {
+  var content = lookup(id, 'smiles');
+  
+  if (!content) {
+    return 'NOT FOUND';
+  }
+  var url = 'http://ws1.bmc.uu.se:8182/cdk/descriptor/org.openscience.cdk.qsar.descriptors.molecular.TPSADescriptor/' + encodeURIComponent(content);
+  var result;
+  try {
+    var response = UrlFetchApp.fetch(url);
+    result = response.getContentText();
+  } catch (error) {
+    // do nothing
+  }
+  return result.substr(result.indexOf("value=")+7,result.indexOf("/>")-result.indexOf("value=")-9);
+}
+
+function getMW(id) {
+  var content = lookup(id, 'smiles');
+  
+  if (!content) {
+    return 'NOT FOUND';
+  }
+  var url = 'http://ws1.bmc.uu.se:8182/cdk/descriptor/org.openscience.cdk.qsar.descriptors.molecular.WeightDescriptor/' + encodeURIComponent(content);
+  var result;
+  try {
+    var response = UrlFetchApp.fetch(url);
+    result = response.getContentText();
+  } catch (error) {
+    // do nothing
+  }
+  return result.substr(result.indexOf("value=")+7,result.indexOf("/>")-result.indexOf("value=")-9);
+}
+
+function getXLogP(id) {
+  var content = lookup(id, 'smiles');
+  
+  if (!content) {
+    return 'NOT FOUND';
+  }
+  var url = 'http://ws1.bmc.uu.se:8182/cdk/descriptor/org.openscience.cdk.qsar.descriptors.molecular.XLogPDescriptor/' + encodeURIComponent(content);
+  var result;
+  try {
+    var response = UrlFetchApp.fetch(url);
+    result = response.getContentText();
+  } catch (error) {
+    // do nothing
+  }
+  return result.substr(result.indexOf("value=")+7,result.indexOf("/>")-result.indexOf("value=")-9);
+}
+
+/**
+ * ONS Functions
+ */
+
+function getCSPredictedDensity(id) {
+  var content = lookup(id, 'chemspider_id');
+ 
+  if (!content) {
+    return 'NOT FOUND';
+  }
+  
+  var csids = content.split('\n');
+  var csid;
+  csid = csids[0];
+  
+  var url = 'http://chemspider.com/' + csid;
+  var result;
+  try {
+    var response = UrlFetchApp.fetch(url);
+    result = response.getContentText();
+  } catch (error) {
+    // do nothing
+  }
+  result = result.substr(result.indexOf("<strong>Density</strong>"));
+  return result.substr(result.indexOf("prop_value_nowrap")+19,result.indexOf("g/cm")-result.indexOf("prop_value_nowrap")-19);
+}

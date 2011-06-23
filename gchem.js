@@ -60,8 +60,12 @@ function onOpen() {
   var cdkmenu = [ {name: "getCSID", functionName: "InsertgetCSID"},
                   {name: "getCSImage", functionName: "InsertgetCSImage"},
                   {name: "getCSPredictedDensity", functionName: "InsertgetCSPredictedDensity"},
+                  {name: "getPredictedMP", functionName: "InsertgetPredictedMP"},
                   {name: "getMP", functionName: "Insertgetmp"},
-                  {name: "getMC", functionName: "Insertgetmc"}];
+                  {name: "getMC", functionName: "Insertgetmc"},
+                  {name: "getX2M", functionName: "InsertgetX2M"},
+                  {name: "getMassRatio2M", functionName: "InsertgetMassRatio2M"},
+                  {name: "getMassFraction2M", functionName: "InsertgetMassFraction2M"}];
   ss.addMenu("gONS", cdkmenu);
 }
 
@@ -265,6 +269,38 @@ function InsertgetCSPredictedDensity() {
  sheet.getRange(r, c).setFormula('=getCSPredictedDensity(' + sheet.getRange(r, 1).getA1Notation() + ')');
 }
 
+function InsertgetPredictedMP() { // Does Lookup - Does Not Calculate 
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getPredictedMP(' + sheet.getRange(r, 1).getA1Notation() + ')');
+}
+
+function InsertgetX2M() {
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getX2M(' + sheet.getRange(r, 1).getA1Notation() + ',' + sheet.getRange(r, 2).getA1Notation() + ',' + sheet.getRange(r, 3).getA1Notation()+ ')');
+}
+
+function InsertgetMassRatio2M() {
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getMassRatio2M(' + sheet.getRange(r, 1).getA1Notation() + ',' + sheet.getRange(r, 2).getA1Notation() + ',' + sheet.getRange(r, 3).getA1Notation()+ ')');
+}
+
+function InsertgetMassFraction2M() {
+ var sheet = SpreadsheetApp.getActiveSheet();
+ var ac = sheet.getActiveCell();
+ var r = ac.getRow();
+ var c = ac.getColumn();
+ sheet.getRange(r, c).setFormula('=getMassFraction2M(' + sheet.getRange(r, 1).getA1Notation() + ',' + sheet.getRange(r, 2).getA1Notation() + ',' + sheet.getRange(r, 3).getA1Notation()+ ')');
+}
+
 /**
  * All Functions
  */
@@ -274,14 +310,26 @@ function getImageURL(id) {
 };
 
 function getCSImageURL(id) {
-  var content = lookup(id, 'chemspider_id');
+  var content;
+  var csid;
+  var csids;
   
+  if (isNaN(id)) {
+    content = lookup(id, 'chemspider_id');
+    csids = content.split('\n');
+    csid = csids[0]; // use first returned CSID
+  }
+  else
+  {
+    content = id; // allows user to pass CSID
+    csid = id; 
+  }
+ 
   if (!content) {
     return 'NOT FOUND';
   }
   
-  var csids = content.split('\n');
-  return 'http://www.chemspider.com/image/' + csids[0];
+  return 'http://www.chemspider.com/image/' + csid;
 };
 
 function getChemSpiderID(id) {
@@ -320,13 +368,26 @@ function getCSID(id) { // returns first ChemSpider ID
 };
 
 function getMP(id) { // get experimental melting point
-  var content = lookup(id, 'chemspider_id');
+  var content;
+  var csid;
+  var csids;
   
+  if (isNaN(id)) {
+    content = lookup(id, 'chemspider_id');
+    csids = content.split('\n');
+    csid = csids[0]; // use first returned CSID
+  }
+  else
+  {
+    content = id; // allows user to pass CSID
+    csid = id; 
+  }
+ 
   if (!content) {
     return 'CSID NOT FOUND';
   }
-  var csids = content.split('\n');
-  var url = 'http://lxsrv7.oru.edu/~alang/meltingpoints/meltingpointwebservice.php?csid=' + csids[0];
+  
+  var url = 'http://lxsrv7.oru.edu/~alang/meltingpoints/meltingpointwebservice.php?csid=' + csid;
   var result;
   
   try {
@@ -343,21 +404,44 @@ function getMP(id) { // get experimental melting point
 };
 
 function getMC(solute,solvent) { // get experimental molar concentration
-  var solutecsid = lookup(solute, 'chemspider_id');
   
-  if (!solutecsid) {
+  var content;
+  var solutecsid;
+  var solventcsid;
+  var csid;
+  var csids;
+  
+  if (isNaN(solute)) {
+    content = lookup(solute, 'chemspider_id');
+    csids = content.split('\n');
+    solutecsid = csids[0]; // use first returned CSID
+  }
+  else
+  {
+    content = solute; // allows user to pass CSID
+    solutecsid = solute; 
+  }
+ 
+  if (!content) {
     return 'SOLUTE CSID NOT FOUND';
   }
-  var solutecsids = solutecsid.split('\n');
   
-  var solventcsid = lookup(solvent, 'chemspider_id');
-  
-  if (!solventcsid) {
+  if (isNaN(solvent)) {
+    content = lookup(solvent, 'chemspider_id');
+    csids = content.split('\n');
+    solventcsid = csids[0]; // use first returned CSID
+  }
+  else
+  {
+    content = solvent; // allows user to pass CSID
+    solventcsid = solvent; 
+  }
+ 
+  if (!content) {
     return 'SOLVENT CSID NOT FOUND';
   }
-  var solventcsids = solventcsid.split('\n');
   
-  var url = 'http://old.oru.edu/cccda/sl/solubility/singlesolventcsid.php?solutecsid=' + solutecsids[0] + '&solventcsid=' + solventcsids[0];
+  var url = 'http://old.oru.edu/cccda/sl/solubility/singlesolventcsid.php?solutecsid=' + solutecsid + '&solventcsid=' + solventcsid;
   var result;
   
   try {
@@ -615,15 +699,24 @@ function getXLogP(id) {
  */
 
 function getCSPredictedDensity(id) {
-  var content = lookup(id, 'chemspider_id');
+  var content;
+  var csid;
+  var csids;
+  
+  if (isNaN(id)) {
+    content = lookup(id, 'chemspider_id');
+    csids = content.split('\n');
+    csid = csids[0]; // use first returned CSID
+  }
+  else
+  {
+    content = id; // allows user to pass CSID
+    csid = id; 
+  }
  
   if (!content) {
     return 'NOT FOUND';
   }
-  
-  var csids = content.split('\n');
-  var csid;
-  csid = csids[0];
   
   var url = 'http://chemspider.com/' + csid;
   var result;
@@ -635,4 +728,193 @@ function getCSPredictedDensity(id) {
   }
   result = result.substr(result.indexOf("<strong>Density</strong>"));
   return result.substr(result.indexOf("prop_value_nowrap")+19,result.indexOf("g/cm")-result.indexOf("prop_value_nowrap")-19);
+}
+
+function getPredictedMP(id) {
+  var content;
+  var csid;
+  var csids;
+  
+  if (isNaN(id)) {
+    content = lookup(id, 'chemspider_id');
+    csids = content.split('\n');
+    csid = csids[0]; // use first returned CSID
+  }
+  else
+  {
+    content = id; // allows user to pass CSID
+    csid = id; 
+  }
+ 
+  if (!content) {
+    return 'NOT FOUND';
+  }
+  var url = 'http://showme.physics.drexel.edu/onsc/Services/getPredictedMP/index.php?csid=' + csid;
+  var result;
+  try {
+    var response = UrlFetchApp.fetch(url);
+    result = response.getContentText();
+  } catch (error) {
+    // do nothing
+  }
+  return result; 
+}
+
+function getX2M(solute,solvent,x) {
+  var content;
+  var solutecsid;
+  var solventcsid;
+  var csid;
+  var csids;
+  
+  if (isNaN(solute)) {
+    content = lookup(solute, 'chemspider_id');
+    csids = content.split('\n');
+    solutecsid = csids[0]; // use first returned CSID
+  }
+  else
+  {
+    content = solute; // allows user to pass CSID
+    solutecsid = solute; 
+  }
+ 
+  if (!content) {
+    return 'SOLUTE CSID NOT FOUND';
+  }
+  
+  if (isNaN(solvent)) {
+    content = lookup(solvent, 'chemspider_id');
+    csids = content.split('\n');
+    solventcsid = csids[0]; // use first returned CSID
+  }
+  else
+  {
+    content = solvent; // allows user to pass CSID
+    solventcsid = solvent; 
+  }
+ 
+  if (!content) {
+    return 'SOLVENT CSID NOT FOUND';
+  }
+  
+  var url = 'http://lxsrv7.oru.edu/~alang/solubility/x2M.php?solventcsid=' + solventcsid + '&solutecsid=' + solutecsid + '&x=' + x;
+  var result;
+  
+  try {
+    var response = UrlFetchApp.fetch(url);
+    result = response.getContentText();
+    if (!result) {
+    return 'NO MEASUREMENT FOUND';
+    }
+  } catch (error) {
+    // do nothing
+  }
+  
+  return result;
+}
+
+function getMassRatio2M(solute,solvent,x) {
+  var content;
+  var solutecsid;
+  var solventcsid;
+  var csid;
+  var csids;
+  
+  if (isNaN(solute)) {
+    content = lookup(solute, 'chemspider_id');
+    csids = content.split('\n');
+    solutecsid = csids[0]; // use first returned CSID
+  }
+  else
+  {
+    content = solute; // allows user to pass CSID
+    solutecsid = solute; 
+  }
+ 
+  if (!content) {
+    return 'SOLUTE CSID NOT FOUND';
+  }
+  
+  if (isNaN(solvent)) {
+    content = lookup(solvent, 'chemspider_id');
+    csids = content.split('\n');
+    solventcsid = csids[0]; // use first returned CSID
+  }
+  else
+  {
+    content = solvent; // allows user to pass CSID
+    solventcsid = solvent; 
+  }
+ 
+  if (!content) {
+    return 'SOLVENT CSID NOT FOUND';
+  }
+  
+  var url = 'http://lxsrv7.oru.edu/~alang/solubility/MassRatio2M.php?solventcsid=' + solventcsid + '&solutecsid=' + solutecsid + '&x=' + x;
+  var result;
+  
+  try {
+    var response = UrlFetchApp.fetch(url);
+    result = response.getContentText();
+    if (!result) {
+    return 'NO MEASUREMENT FOUND';
+    }
+  } catch (error) {
+    // do nothing
+  }
+  
+  return result;
+}
+
+function getMassFraction2M(solute,solvent,x) {
+  var content;
+  var solutecsid;
+  var solventcsid;
+  var csid;
+  var csids;
+  
+  if (isNaN(solute)) {
+    content = lookup(solute, 'chemspider_id');
+    csids = content.split('\n');
+    solutecsid = csids[0]; // use first returned CSID
+  }
+  else
+  {
+    content = solute; // allows user to pass CSID
+    solutecsid = solute; 
+  }
+ 
+  if (!content) {
+    return 'SOLUTE CSID NOT FOUND';
+  }
+  
+  if (isNaN(solvent)) {
+    content = lookup(solvent, 'chemspider_id');
+    csids = content.split('\n');
+    solventcsid = csids[0]; // use first returned CSID
+  }
+  else
+  {
+    content = solvent; // allows user to pass CSID
+    solventcsid = solvent; 
+  }
+ 
+  if (!content) {
+    return 'SOLVENT CSID NOT FOUND';
+  }
+  
+  var url = 'http://lxsrv7.oru.edu/~alang/solubility/MassFraction2M.php?solventcsid=' + solventcsid + '&solutecsid=' + solutecsid + '&x=' + x;
+  var result;
+  
+  try {
+    var response = UrlFetchApp.fetch(url);
+    result = response.getContentText();
+    if (!result) {
+    return 'NO MEASUREMENT FOUND';
+    }
+  } catch (error) {
+    // do nothing
+  }
+  
+  return result;
 }
